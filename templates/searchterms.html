@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+
+<form action="{{ url_for('searched_terms') }}" method="POST">
+    {{ form.history.label() }}{{ form.history() }}
+    {{ form.submit() }}
+    {{ form.hidden_tag() }}
+</form>
+
+{% if history %}
+    <p> Previously searched: </p>
+    {{ history }}
+{% endif %}
+
+<div>
+{% for message in get_flashed_messages() %}
+{{ message }}
+{% endfor %}
+</div>
+
+{% endblock %}

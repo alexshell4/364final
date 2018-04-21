@@ -1,0 +1,33 @@
+{% if current_user.is_authenticated %}
+    <a href="{{ url_for('logout') }}">Sign Out {{current_user.username}}</a>
+{% else %}
+    <a href="{{ url_for('login') }}">Sign In</a>
+{% endif %}
+<br>
+<br>
+
+{% block navigation %}
+<ul><i>
+    <li><a href="{{ url_for('base') }}">Search for articles</a>
+    <li><a href="{{ url_for('searched_terms') }}">Check and see if a search term has been used</a>
+    <li><a href="{{ url_for('create_reading_list') }}">Create a personal reading list</a></li>
+    <li><a href="{{ url_for('reading_lists') }}">See your reading lists</a></li>
+    <li><a href="{{ url_for('specific_source') }}">See articles from your favorite source</a></li></li></i>
+</ul>
+<p>--------</p><br>
+{% endblock %}
+
+{% block main_content %}
+<form method="POST">
+	{{ form.hidden_tag() }}
+  {{ form.search.label }} {{ form.search() }}
+	{{ form.submit() }}
+</form>
+
+<div>
+{% for message in get_flashed_messages() %}
+{{ message }}
+{% endfor %}
+</div>
+
+{% endblock %}

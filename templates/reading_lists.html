@@ -1,0 +1,22 @@
+<h1>My reading lists</h1>
+
+{% extends 'base.html' %}
+
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+
+<ul>
+{% for article in reading_lists %}
+    <li><a href="http://localhost:5000/reading_list/{{ article.id }}">{{ article.name }}</a>
+    <form method="POST" action="/delete/{{ article.name }}">
+        {{ form.hidden_tag() }}
+        {{ form.submit() }}
+    <form>
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+<h1>Create a new reading list</h1>
+{% extends 'base.html' %}
+
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+
+<form action="" method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.name.label }} {{ form.name() }}
+	{{ form.article_choices.label }} {{ form.article_choices() }}
+	{{ form.submit.label }}{{ form.submit() }}
+</form>
+
+{% endblock %}

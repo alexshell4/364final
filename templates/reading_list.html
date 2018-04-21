@@ -1,0 +1,23 @@
+<h1>{{ reading_list.name }}</h1>
+{% extends 'base.html' %}
+
+{% block navigation %}
+ {{ super() }}
+{% endblock %}
+
+{% block main_content %}
+
+<ul>
+{% for article in articles %}
+    <li>
+        <strong> {{ article.title }} </strong>
+        <p> Description: {{ article.description }} </p>
+        <form method="POST" action="/update/{{ article.title }}">
+            {{ form.hidden_tag() }}
+            {{ form.submit() }}
+        <form>
+    </li>
+{% endfor %}
+<ul>
+
+{% endblock %}
